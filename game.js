@@ -33,6 +33,7 @@ var background4 = new $.gQ.Animation({imageURL: "background4.png"});
 var beetle = new $.gQ.Animation({imageURL: "beetle_32px.gif"});
 var dung = new $.gameQuery.Animation({imageURL: "dung.png", numberOfFrame: 4, delta: 16, rate: 60, type:$.gameQuery.ANIMATION_HORIZONTAL});
 var laser = new $.gameQuery.Animation({imageURL: "laser.png", numberOfFrame: 2, delta: 16, rate: 60, type:$.gameQuery.ANIMATION_HORIZONTAL});
+var explode = new $.gameQuery.Animation({imageURL: "explode.png", numberOfFrame: 4, delta: 16, rate: 60, type:$.gameQuery.ANIMATION_HORIZONTAL | $.gameQuery.ANIMATION_CALLBACK});
 
 $("#playground").playground({height: PLAYGROUND_HEIGHT, width: PLAYGROUND_WIDTH, keyTracker: true});
 
@@ -85,12 +86,8 @@ $.playground().registerCallback(function(){
       var collided = $(this).collision(".enemy,."+$.gQ.groupCssClass);
       if(collided.length > 0){
         collided.each(function(){
-          var possible_value = $(this)[0].enemy.value + $('#player')[0].player.number;
-          if(possible_value < 10000 && possible_value > -10000){
-            var thisEnemy = $(this)[0].enemy;
-            thisEnemy.value = possible_value;
-            $(thisEnemy.node[0]).text(thisEnemy.value)
-          };
+          var thisEnemy = $(this);
+          thisEnemy.setAnimation(explode, function(node){$(node).remove();});
         })
         $(this).remove();
       }
@@ -132,7 +129,6 @@ $.playground().registerCallback(function() {
   var enemyElement = $("#"+name);
   enemyElement.addClass("enemy");
   enemyElement[0].enemy = new Enemy(enemyElement, enemyValue);
-  // enemyElement.text(enemyValue);
 }, enemySpawnRate);
 
 // missile launching
@@ -143,8 +139,15 @@ $(document).keydown(function(e){
       var name = "playerMissile_"+(new Date()).getTime();
       $("#playerMissileLayer").addSprite(name, {animation: laser, posx: playerposx + playerWidth, posy: playerposy, width: playerWidth,height: playerHeight});
       $("#"+name).addClass("playerMissiles");
-      // $("#"+name).html("<div>"+$("#player")[0].player.number+"</div>");
   }
 });
 
-$.playground().startGame();
+$.loadCallback(function(percent){
+    $("#loadingBar").width(5*percent);
+});
+
+$("#startbutton").click(function(){
+  $.playground().startGame(function(){
+    $("#welcomeScreen").fadeTo(1000,0,function(){$(this).remove();});
+  });
+})

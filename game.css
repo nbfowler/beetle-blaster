@@ -15,3 +15,18 @@
 .number{
   color:green;
 }
+#welcomeScreen{
+  width: 700px;
+  height: 250px;
+  position: absolute;
+  z-index: 100;
+  background-image: url(beetleblaster_logo.png);
+  font-family: verdana, sans-serif;
+}
+#loadingBar{
+  position: relative;
+  left: 100px;
+  height: 15px;
+  width: 0px;
+  background: white;
+}

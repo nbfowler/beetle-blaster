@@ -4,7 +4,16 @@
     <link rel="stylesheet" type="text/css" href="game.css">
   </head>
   <body>
-    <div id="playground" style="width: 700px; height: 250px; background: #725538;"></div>
+    <div id="playground" style="width: 700px; height: 250px; background: #725538;">
+      <div id="welcomeScreen">
+        <div style="position: absolute; top: 120px; width: 700px; color: white;">
+          <div id="loadingBar" ></div><br />
+          <center><a style="cursor: pointer;" id="startbutton">
+              Click here to start!
+          </a></center>
+        </div>
+      </div>
+    </div>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="jquery.gamequery.js"></script>
     <script type="text/javascript" src="game.js"></script>
