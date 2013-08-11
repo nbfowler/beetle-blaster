@@ -51,11 +51,20 @@ $.playground().registerCallback(function(){
   $("#background2").x(($("#background2").x() - farParallaxSpeed - PLAYGROUND_WIDTH) % (-2 * PLAYGROUND_WIDTH) + PLAYGROUND_WIDTH);
   $("#background3").x(($("#background3").x() - closeParallaxSpeed - PLAYGROUND_WIDTH) % (-2 * PLAYGROUND_WIDTH) + PLAYGROUND_WIDTH);
   $("#background4").x(($("#background4").x() - closeParallaxSpeed - PLAYGROUND_WIDTH) % (-2 * PLAYGROUND_WIDTH) + PLAYGROUND_WIDTH);
-  // move enemies and remove them when they are too far to the left
+  // enemy movement, collision, and removal
   $(".enemy").each(function(){
     this.enemy.update();
-    if(($(this).x()+ enemyWidth) < 0) {
+    if(($(this).x()+ enemyWidth) < 0){
       $(this).remove();
+    } else {
+      var collided = $(this).collision("#playerBody,."+$.gQ.groupCssClass);
+      if(collided.length > 0){
+        $("#player")[0].player.value += $(this)[0].enemy.value;
+        $("#player")[0].player.number = $(this)[0].enemy.value;
+        $("#player .value").html($("#player")[0].player.value);
+        $("#player .number").html($("#player")[0].player.number);
+        $(this).remove();
+      }
     }
   });
 
