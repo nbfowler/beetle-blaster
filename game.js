@@ -1,23 +1,23 @@
-var PLAYGROUND_WIDTH = 700;
-var PLAYGROUND_HEIGHT = 250;
+var PLAYGROUND_WIDTH = 1400;
+var PLAYGROUND_HEIGHT = 500;
 var REFRESH_RATE = 15;
-var farParallaxSpeed = 1; 
-var closeParallaxSpeed = 3; 
+var farParallaxSpeed = 2;
+var closeParallaxSpeed = 6;
 var enemyHeight = 30;
 var enemyWidth = 60;
-var enemySpawnRate = 1000;
+var enemySpawnRate = 500;
 
 function Enemy(node, value) {
   this.value = value;
-  this.speed = 5;
+  this.speed = 8;
   this.node = node;
   this.update = function() {
     this.node.x(-this.speed, true);
   };
 };
 
-var playerHeight = 60;
-var playerWidth = 120;
+var playerHeight = 32;
+var playerWidth = 32;
 
 function Player() {
   this.value = 10;
@@ -30,6 +30,7 @@ var background1 = new $.gQ.Animation({imageURL: "background1.png"});
 var background2 = new $.gQ.Animation({imageURL: "background2.png"}); 
 var background3 = new $.gQ.Animation({imageURL: "background3.png"});
 var background4 = new $.gQ.Animation({imageURL: "background4.png"});
+var beetle = new $.gQ.Animation({imageURL: "beetle_32px.gif"});
 
 $("#playground").playground({height: PLAYGROUND_HEIGHT, width: PLAYGROUND_WIDTH, keyTracker: true});
 
@@ -42,13 +43,12 @@ $.playground().addGroup("background", {width: PLAYGROUND_WIDTH, height: PLAYGROU
 .addGroup("enemies", {width: PLAYGROUND_WIDTH, height: PLAYGROUND_HEIGHT})
 .end()
 .addGroup("player", {posx: 0, posy: PLAYGROUND_HEIGHT/2, width: playerWidth, height: playerHeight})
-.addSprite("playerBody", {animation: '', posx: 0, posy: 0, width: playerWidth, height: playerHeight})
+.addSprite("playerBody", {animation: beetle, posx: 0, posy: 0, width: playerWidth, height: playerHeight})
 .end()
 .addGroup("playerMissileLayer", {width: PLAYGROUND_WIDTH, height: PLAYGROUND_HEIGHT})
 .end()
 
 $("#player")[0].player = new Player();
-$("#playerBody").html("<span class='value'>"+$("#player")[0].player.value+"</span><br /><span class='number'>"+$("#player")[0].player.number+"</span>");
 
 // main loop
 $.playground().registerCallback(function(){
@@ -96,26 +96,26 @@ $.playground().registerCallback(function(){
   });
 
   if(jQuery.gameQuery.keyTracker[37]){
-    var nextpos = $("#player").x()-5;
+    var nextpos = $("#player").x()-10;
     if(nextpos > 0) {
       $("#player").x(nextpos);
     }
   }
   if(jQuery.gameQuery.keyTracker[39]){
-    var nextpos = $("#player").x()+5;
+    var nextpos = $("#player").x()+10;
     if(nextpos < PLAYGROUND_WIDTH - playerWidth) {
       $("#player").x(nextpos);
     }
   }
 
   if(jQuery.gameQuery.keyTracker[38]){
-    var nextpos = $("#player").y()-5;
+    var nextpos = $("#player").y()-10;
     if(nextpos > 0) {
       $("#player").y(nextpos);
     }
   }
   if(jQuery.gameQuery.keyTracker[40]){
-    var nextpos = $("#player").y()+5;
+    var nextpos = $("#player").y()+10;
     if(nextpos < PLAYGROUND_HEIGHT - playerHeight) {
       $("#player").y(nextpos);
     }
@@ -139,7 +139,7 @@ $(document).keydown(function(e){
       var playerposx = $("#player").x();
       var playerposy = $("#player").y();
       var name = "playerMissile_"+(new Date()).getTime();
-      $("#playerMissileLayer").addSprite(name, {posx: playerposx + playerWidth, posy: playerposy, width: playerWidth/2,height: playerHeight/2});
+      $("#playerMissileLayer").addSprite(name, {posx: playerposx + playerWidth, posy: playerposy, width: playerWidth,height: playerHeight});
       $("#"+name).addClass("playerMissiles");
       $("#"+name).html("<div>"+$("#player")[0].player.number+"</div>");
   }
