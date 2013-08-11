@@ -20,7 +20,7 @@
   height: 250px;
   position: absolute;
   z-index: 100;
-  background-image: url(beetleblaster_logo.png);
+  background-image: url(beetleblaster_logo_glow.png);
   font-family: verdana, sans-serif;
 }
 #loadingBar{
