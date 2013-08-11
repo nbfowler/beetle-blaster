@@ -1,11 +1,11 @@
-var PLAYGROUND_WIDTH = 1400;
-var PLAYGROUND_HEIGHT = 500;
+var PLAYGROUND_WIDTH = 700;
+var PLAYGROUND_HEIGHT = 250;
 var REFRESH_RATE = 15;
-var farParallaxSpeed = 2;
-var closeParallaxSpeed = 6;
+var farParallaxSpeed = 1;
+var closeParallaxSpeed = 3;
 var enemyHeight = 16;
 var enemyWidth = 16;
-var enemySpawnRate = 500;
+var enemySpawnRate = 1000;
 
 function Enemy(node, value) {
   this.value = value;
@@ -97,26 +97,26 @@ $.playground().registerCallback(function(){
   });
 
   if(jQuery.gameQuery.keyTracker[37]){
-    var nextpos = $("#player").x()-10;
+    var nextpos = $("#player").x()-5;
     if(nextpos > 0) {
       $("#player").x(nextpos);
     }
   }
   if(jQuery.gameQuery.keyTracker[39]){
-    var nextpos = $("#player").x()+10;
+    var nextpos = $("#player").x()+5;
     if(nextpos < PLAYGROUND_WIDTH - playerWidth) {
       $("#player").x(nextpos);
     }
   }
 
   if(jQuery.gameQuery.keyTracker[38]){
-    var nextpos = $("#player").y()-10;
+    var nextpos = $("#player").y()-5;
     if(nextpos > 0) {
       $("#player").y(nextpos);
     }
   }
   if(jQuery.gameQuery.keyTracker[40]){
-    var nextpos = $("#player").y()+10;
+    var nextpos = $("#player").y()+5;
     if(nextpos < PLAYGROUND_HEIGHT - playerHeight) {
       $("#player").y(nextpos);
     }
