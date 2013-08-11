@@ -15,13 +15,17 @@
 .number{
   color:green;
 }
-#welcomeScreen{
+#welcomeScreen, #helpScreen {
   width: 700px;
   height: 250px;
   position: absolute;
   z-index: 100;
-  background-image: url(beetleblaster_logo_glow.png);
+  background-image: url(beetleblaster_logo_glow_text.png);
   font-family: verdana, sans-serif;
+  color: white;
+}
+#helpScreen {
+  background-image: url(beetleblaster_logo_glow.png);
 }
 #loadingBar{
   position: relative;
@@ -30,3 +34,11 @@
   width: 0px;
   background: white;
 }
+#controls div {
+  margin: 5px 30px;
+  padding: 5px 10px;
+  border: 1px solid white;
+  background-color: black;
+  color: white;
+}
+

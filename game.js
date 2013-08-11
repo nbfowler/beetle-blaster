@@ -146,6 +146,17 @@ $.loadCallback(function(percent){
     $("#loadingBar").width(5*percent);
 });
 
+
+$("#helpbutton").click(function(){
+  $("#welcomeScreen").hide();
+  $("#helpScreen").show();
+})
+    
+$("#backbutton").click(function(){
+  $("#helpScreen").hide();
+  $("#welcomeScreen").show();
+})
+
 $("#startbutton").click(function(){
   $.playground().startGame(function(){
     $("#welcomeScreen").fadeTo(1000,0,function(){$(this).remove();});
