@@ -3,8 +3,8 @@ var PLAYGROUND_HEIGHT = 500;
 var REFRESH_RATE = 15;
 var farParallaxSpeed = 2;
 var closeParallaxSpeed = 6;
-var enemyHeight = 30;
-var enemyWidth = 60;
+var enemyHeight = 16;
+var enemyWidth = 16;
 var enemySpawnRate = 500;
 
 function Enemy(node, value) {
@@ -31,6 +31,7 @@ var background2 = new $.gQ.Animation({imageURL: "background2.png"});
 var background3 = new $.gQ.Animation({imageURL: "background3.png"});
 var background4 = new $.gQ.Animation({imageURL: "background4.png"});
 var beetle = new $.gQ.Animation({imageURL: "beetle_32px.gif"});
+var dung = new $.gameQuery.Animation({imageURL: "dung.png", numberOfFrame: 4, delta: 16, rate: 60, type:$.gameQuery.ANIMATION_HORIZONTAL});
 
 $("#playground").playground({height: PLAYGROUND_HEIGHT, width: PLAYGROUND_WIDTH, keyTracker: true});
 
@@ -126,11 +127,11 @@ $.playground().registerCallback(function(){
 $.playground().registerCallback(function() {
   var enemyValue = Math.ceil(Math.random()*21);
   var name = "enemy_" + (new Date).getTime();
-  $("#enemies").addSprite(name, {animation: '', posx: PLAYGROUND_WIDTH, posy: Math.random()*PLAYGROUND_HEIGHT*0.9, width: enemyWidth, height: enemyHeight});
+  $("#enemies").addSprite(name, {animation: dung, posx: PLAYGROUND_WIDTH, posy: Math.random()*PLAYGROUND_HEIGHT*0.9, width: enemyWidth, height: enemyHeight});
   var enemyElement = $("#"+name);
   enemyElement.addClass("enemy");
   enemyElement[0].enemy = new Enemy(enemyElement, enemyValue);
-  enemyElement.text(enemyValue);
+  // enemyElement.text(enemyValue);
 }, enemySpawnRate);
 
 // missile launching
