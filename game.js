@@ -32,6 +32,7 @@ var background3 = new $.gQ.Animation({imageURL: "background3.png"});
 var background4 = new $.gQ.Animation({imageURL: "background4.png"});
 var beetle = new $.gQ.Animation({imageURL: "beetle_32px.gif"});
 var dung = new $.gameQuery.Animation({imageURL: "dung.png", numberOfFrame: 4, delta: 16, rate: 60, type:$.gameQuery.ANIMATION_HORIZONTAL});
+var laser = new $.gameQuery.Animation({imageURL: "laser.png", numberOfFrame: 2, delta: 16, rate: 60, type:$.gameQuery.ANIMATION_HORIZONTAL});
 
 $("#playground").playground({height: PLAYGROUND_HEIGHT, width: PLAYGROUND_WIDTH, keyTracker: true});
 
@@ -140,9 +141,9 @@ $(document).keydown(function(e){
       var playerposx = $("#player").x();
       var playerposy = $("#player").y();
       var name = "playerMissile_"+(new Date()).getTime();
-      $("#playerMissileLayer").addSprite(name, {posx: playerposx + playerWidth, posy: playerposy, width: playerWidth,height: playerHeight});
+      $("#playerMissileLayer").addSprite(name, {animation: laser, posx: playerposx + playerWidth, posy: playerposy, width: playerWidth,height: playerHeight});
       $("#"+name).addClass("playerMissiles");
-      $("#"+name).html("<div>"+$("#player")[0].player.number+"</div>");
+      // $("#"+name).html("<div>"+$("#player")[0].player.number+"</div>");
   }
 });
 
