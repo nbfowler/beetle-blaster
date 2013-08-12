@@ -1,0 +1,44 @@
+/* .enemy { */
+  /* color: red; */
+  /* background-color: black; */
+  /* font-size:12px; */
+  /* border: 1px solid red; */
+  /* text-align: center; */
+/* } */
+/* .playerMissiles{ */
+  /* text-align:center; */
+  /* border: 1px solid green; */
+  /* font-size:24px; */
+  /* color:green; */
+  /* background-color:black; */
+/* } */
+.number{
+  color:green;
+}
+#welcomeScreen, #helpScreen {
+  width: 700px;
+  height: 250px;
+  position: absolute;
+  z-index: 100;
+  background-image: url(beetleblaster_logo_glow_text.png);
+  font-family: verdana, sans-serif;
+  color: white;
+}
+#helpScreen {
+  background-image: url(beetleblaster_logo_glow.png);
+}
+#loadingBar{
+  position: relative;
+  left: 100px;
+  height: 15px;
+  width: 0px;
+  background: white;
+}
+#controls div {
+  margin: 5px 30px;
+  padding: 5px 10px;
+  border: 1px solid white;
+  background-color: black;
+  color: white;
+}
+
